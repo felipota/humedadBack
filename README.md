@@ -231,3 +231,42 @@ vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
 ```
 
 You can see code coverage output under the `tests/_output` directory.
+
+
+### Script de base de datos: 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `clima`
+--
+CREATE DATABASE IF NOT EXISTS `clima` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `clima`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `history`
+--
+
+DROP TABLE IF EXISTS `history`;
+CREATE TABLE IF NOT EXISTS `history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'indice de la tabla',
+  `ciudad` varchar(64) NOT NULL,
+  `humidity` int(11) NOT NULL COMMENT 'humedad',
+  `pressure` float NOT NULL COMMENT 'presión',
+  `rising` int(11) NOT NULL COMMENT 'precipitación',
+  `visibility` float NOT NULL COMMENT 'visibilidad',
+  `fecha_consulta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) COMMENT='indice de la tabla'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+COMMIT;
+
